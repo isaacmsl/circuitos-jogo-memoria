@@ -8,13 +8,13 @@ escolhidas = (0,0) // [0] primeira carta, [1] segunda carta
 
 // Método será sensível à mudança de virar_carta e pos_cartas_escolhidas
 espera(virar_carta, escolhidas):
-  if selecao[0] != 0 && escolhidas[1] != 0:    (Estado ESPERA)
+  if escolhidas[0] != 0 && escolhidas[1] != 0:    (Estado ESPERA)
     comparacao()                               (Estado COMPARACAO)
   else if virar_carta:                         (Estado ESPERA)
     carta_escolhida()                          (Estado CARTA_ESCOLHIDA)
 
 comparacao():
-  if jogo[selecoes[0]] == jogo[selecoes[1]]:   (Estado COMPARACAO)
+  if jogo[escolhidas[0]] == jogo[escolhidas[1]]:   (Estado COMPARACAO)
     virar_escolhidas()                         (Estado VIRAR_ESCOLHIDAS)
 
 carta_escolhida():
