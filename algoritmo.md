@@ -23,7 +23,7 @@ carta_escolhida():
       virou_primeira = escolhidas[0] != 0      (Estado CARTA_ESCOLHIDA)
       escolhidas[virou_primeira] = i + 1       (Estado CARTA_ESCOLHIDA)
 
-vir():
+virar_escolhidas():
   viradas[escolhidas[0]] = 1                   (Estado VIRAR_ESCOLHIDAS)
   viradas[escolhidas[1]] = 1                   (Estado VIRAR_ESCOLHIDAS)
   escolhidas = (0,0)                           (Estado VIRAR_ESCOLHIDAS)
