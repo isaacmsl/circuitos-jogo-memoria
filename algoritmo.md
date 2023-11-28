@@ -14,7 +14,7 @@ espera(virar_carta, pos_cartas_escolhidas):
     carta_virada()                                                      (Estado CARTA_VIRADA)
 
 compara_cartas_escolhidas():
-  if jogo[pos_cartas[0]] == cartas_do_jogo[pos_cartas_escolhidas[1]]:   (Estado COMPARACAO)
+  if cartas_do_jogo[pos_cartas[0]] == cartas_do_jogo[pos_cartas_escolhidas[1]]:  (Estado COMPARACAO)
     virar_cartas_escolhidas()                                           (Estado VIRAR_CARTAS)
 
 carta_virada():
