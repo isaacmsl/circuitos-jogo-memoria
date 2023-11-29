@@ -6,10 +6,9 @@ ENTITY maq_estados IS
 PORT (
     clk     : IN BIT; -- clock
     clrn    : IN BIT; -- clear
-    virar_carta : IN STD_LOGIC_VECTOR(15 DOWNTO 0)
-    viradas : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
+    viradas : IN STD_LOGIC_VECTOR(2 DOWNTO 0); -- cartas viradas
     escolheu : IN BIT; -- escolheu as duas cartas
-    ena_comp, ena_cod : OUT BIT; -- enables
+    ena_comp, ena_cod : OUT BIT -- enables
 );
 END maq_estados;
 
@@ -33,9 +32,9 @@ p_next_state : PROCESS (state_reg, viradas, escolheu)
     BEGIN
         CASE (state_reg) IS
             WHEN espera =>
-                IF (viradas = 8) THEN
+                IF (viradas = "100") THEN
                     next_state <= fim;
-                ELSIF (escolheu = 1)
+                ELSIF (escolheu = '1') THEN
                     next_state <= comparacao;
                 END IF;
             WHEN OTHERS =>
@@ -46,13 +45,13 @@ p_next_state : PROCESS (state_reg, viradas, escolheu)
 -- OUTPUT
 p_output : PROCESS (state_reg)
     BEGIN
-        ena_comp <= 0;
-        ena_cod <= 0;
+        ena_comp <= '0';
+        ena_cod <= '0';
         IF (state_reg = comparacao) THEN
-            ena_comp <= 1;
-            ena_cod <= 0;
+            ena_comp <= '1';
+            ena_cod <= '0';
         ELSIF (state_reg = espera) THEN
-            ena_cod <= 1;
+            ena_cod <= '1';
         END IF;
     END PROCESS;
 END arch;
