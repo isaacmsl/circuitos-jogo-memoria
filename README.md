@@ -5,9 +5,9 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
 ## Etapas
 
 - [x] Criar [pseudoalgoritmo](algoritmo.md)
-- [ ] Desenvolver diagrama dos componentes
+- [x] Desenvolver diagrama dos componentes
 - [ ] Criar componentes em VHDL
-  - [ ] Máquina de estados
+  - [x] Máquina de estados
   - [ ] Multiplexador
   - [ ] Contador
   - [ ] Comparador
