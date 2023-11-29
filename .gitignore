@@ -1,7 +1,7 @@
-*/work/
-*/transcript
-*/*.mti
-*/*.mpf
-*/*.vhd.bak
-*/*.wlf
-*/*.do
+work/
+transcript
+*.mti
+*.mpf
+*.vhd.bak
+*.wlf
+*.do
