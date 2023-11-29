@@ -5,8 +5,16 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
 ## Etapas
 
 - [x] Criar [pseudoalgoritmo](algoritmo.md)
-- [ ] Desenvolver diagrama dos componentes 
+- [ ] Desenvolver diagrama dos componentes
 - [ ] Criar componentes em VHDL
+  - [ ] Máquina de estados
+  - [ ] Contador
+  - [ ] Comparador
+  - [ ] Codificador de teclado
+  - [ ] Decodificador de display
+  - [ ] Manipulador de displays
+  - [ ] Registrador
+  - [ ] Jogo
 - [ ] Interconectar componentes no ModelSim
 - [ ] Realizar simulações
 - [ ] Desenvolvimento de relatório apresentando resultados
