@@ -12,7 +12,7 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
   - [ ] Contador
   - [ ] Comparador
   - [x] Codificador de teclado
-  - [ ] Decodificador de display
+  - [x] Decodificador de display
   - [ ] Manipulador de displays
   - [ ] Registrador
   - [ ] Jogo
