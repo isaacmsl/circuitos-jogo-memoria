@@ -1,0 +1,13 @@
+/home/isaac/Documents/Circuitos/circuitos-jogo-memoria/jogo-memoria/maq_estados.vhd {0 {vcom -work work -2002 -explicit -stats=none /home/isaac/Documents/Circuitos/circuitos-jogo-memoria/jogo-memoria/maq_estados.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity maq_estados
+** Error: /home/isaac/Documents/Circuitos/circuitos-jogo-memoria/jogo-memoria/maq_estados.vhd(10): (vcom-1136) Unknown identifier "viradas".
+** Error: /home/isaac/Documents/Circuitos/circuitos-jogo-memoria/jogo-memoria/maq_estados.vhd(10): Bad resolution function (STD_LOGIC_VECTOR) for type (error).
+** Error: /home/isaac/Documents/Circuitos/circuitos-jogo-memoria/jogo-memoria/maq_estados.vhd(10): near ":": (vcom-1576) expecting ';' or ')'.
+
+} {9.0 12.0} {}}
