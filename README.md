@@ -13,12 +13,12 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
   - [x] Comparador de cartas
   - [x] Codificador de teclado
   - [x] Decodificador de display
-  - [ ] Manipulador de displays
+  - [x] Manipulador de displays
   - [ ] Registrador
-  - [ ] Jogo
-- [ ] Interconectar componentes no ModelSim
+  - [ ] Jogo 
+- [ ] Interconectar componentes no ModelSim (Em andamento)
 - [ ] Realizar simulações
-- [ ] Desenvolvimento de relatório apresentando resultados
+- [ ] Desenvolvimento de relatório apresentando resultados (Em andamento)
 
 ## Diagrama dos componentes
 
