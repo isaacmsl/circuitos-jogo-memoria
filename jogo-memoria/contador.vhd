@@ -5,12 +5,12 @@ USE IEEE.std_logic_unsigned.ALL;
 ENTITY contador IS
     GENERIC (W : NATURAL := 4);
     PORT (
-        d : IN STD_LOGIC_VECTOR(W-1 DOWNTO 0); -- data input
-        clk : IN BIT; -- clock
-        clrn : IN BIT; -- clear
-        ena : IN BIT; -- enable
-        load : IN BIT; -- load
-        q : BUFFER STD_LOGIC_VECTOR(W-1 DOWNTO 0) -- data output
+        ena     : IN BIT;                               -- enable
+        clk     : IN BIT;                               -- clock
+        clrn    : IN BIT;                               -- clear
+        load    : IN BIT;                               -- load
+        d       : IN STD_LOGIC_VECTOR(W-1 DOWNTO 0);    -- data input
+        q       : BUFFER STD_LOGIC_VECTOR(W-1 DOWNTO 0) -- data output
     );
 END contador;
 
@@ -23,7 +23,7 @@ BEGIN
         ELSIF (ena = '0') THEN
             q <= q;
         ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (load = '1') THEN
+            IF (load = '0') THEN
                 q <= d;
             ELSE
                 q <= q + 1;

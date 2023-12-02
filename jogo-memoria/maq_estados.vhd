@@ -4,11 +4,11 @@ USE IEEE.std_logic_unsigned.ALL;
 
 ENTITY maq_estados IS
 PORT (
-    clk     : IN BIT; -- clock
-    clrn    : IN BIT; -- clear
-    viradas : IN STD_LOGIC_VECTOR(2 DOWNTO 0); -- cartas viradas
-    escolheu : IN BIT; -- escolheu as duas cartas
-    ena_comp, ena_cod : OUT BIT -- enables
+    clk     : IN BIT;                           -- clock
+    clrn    : IN BIT;                           -- clear
+    escolheu : IN BIT;                          -- escolheu as duas cartas
+    viradas : IN STD_LOGIC_VECTOR(3 DOWNTO 0);  -- cartas viradas
+    ena_comp, ena_cod : OUT BIT                 -- enables
 );
 END maq_estados;
 
@@ -32,7 +32,7 @@ p_next_state : PROCESS (state_reg, viradas, escolheu)
     BEGIN
         CASE (state_reg) IS
             WHEN espera =>
-                IF (viradas = "100") THEN
+                IF (viradas = "1000") THEN
                     next_state <= fim;
                 ELSIF (escolheu = '1') THEN
                     next_state <= comparacao;

@@ -1,10 +1,6 @@
-LIBRARY IEEE;
-USE IEEE.std_logic_1164.ALL;
-USE IEEE.std_logic_unsigned.ALL;
-
 ENTITY manipulador_display IS
 PORT (
-    cartas_jogo      : IN STD_LOGIC_VECTOR(15 DOWNTO 0);       
+    cartas_jogo      : IN BIT_VECTOR(15 DOWNTO 0);       
     cartas_viradas   : IN BIT_VECTOR(15 DOWNTO 0)
 );
 END manipulador_display;
@@ -13,13 +9,13 @@ ARCHITECTURE arch OF manipulador_display IS
     COMPONENT dec_display
     PORT (
         enable		: IN BIT; 
-        card		: IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-        display		: OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
+        card		: IN BIT_VECTOR(2 DOWNTO 0);
+        display		: OUT BIT_VECTOR(6 DOWNTO 0)
     );
     END COMPONENT;
 
-    SIGNAL s0, s1, s2, s3, s4, s5, s6, s7 : STD_LOGIC_VECTOR(6 DOWNTO 0);
-    SIGNAL s8, s9, s10, s11, s12, s13, s14, s15 : STD_LOGIC_VECTOR(6 DOWNTO 0);
+    SIGNAL s0, s1, s2, s3, s4, s5, s6, s7 : BIT_VECTOR(6 DOWNTO 0);
+    SIGNAL s8, s9, s10, s11, s12, s13, s14, s15 : BIT_VECTOR(6 DOWNTO 0);
     
     BEGIN
         d0 : dec_display PORT MAP (cartas_viradas(0), "000", s0);

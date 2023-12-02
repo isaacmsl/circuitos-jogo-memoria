@@ -1,12 +1,8 @@
-LIBRARY IEEE;
-USE IEEE.std_logic_1164.ALL;
-USE IEEE.std_logic_unsigned.ALL;
-
 ENTITY comp_cartas IS
 PORT (
-    carta_a, carta_b : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-    enable : IN BIT;
-    result : OUT BIT
+    enable           : IN BIT;                      -- enable
+    carta_a, carta_b : IN BIT_VECTOR(2 DOWNTO 0);   -- cartas escolhidas
+    result           : OUT BIT                      -- resultado
 );
 END comp_cartas;
 
