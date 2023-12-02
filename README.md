@@ -9,7 +9,7 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
 - [ ] Criar componentes em VHDL
   - [x] Máquina de estados
   - [ ] Multiplexador
-  - [ ] Contador
+  - [x] Contador
   - [ ] Comparador
   - [x] Codificador de teclado
   - [x] Decodificador de display
