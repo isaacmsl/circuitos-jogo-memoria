@@ -13,6 +13,7 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
   - [x] Comparador de cartas
   - [x] Codificador de teclado
   - [x] Decodificador de display
+  - [ ] Display de 7 segmentos
   - [ ] Manipulador de displays
   - [ ] Registrador
   - [ ] Jogo
