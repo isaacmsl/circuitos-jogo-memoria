@@ -1,16 +1,20 @@
 ENTITY memoria_ram IS
+    GENERIC (
+        addr_size    : INTEGER := 16;
+        data_size    : INTEGER := 3
+    );
     PORT (
-        addr        : IN NATURAL RANGE 0 TO 15; -- access to 16 cards
-        data_in     : IN BIT_VECTOR(2 DOWNTO 0); -- card
+        addr        : IN NATURAL RANGE 0 TO addr_size - 1; -- access to 16 cards
+        data_in     : IN BIT_VECTOR(data_size - 1 DOWNTO 0); -- card
         enable_wr   : IN BIT;
         clk         : IN BIT;
-        data_out    : OUT BIT_VECTOR(2 DOWNTO 0)
+        data_out    : OUT BIT_VECTOR(data_size - 1 DOWNTO 0)
     );
 END memoria_ram;
 
 
 ARCHITECTURE arch OF memoria_ram IS
-    TYPE MEMORY IS ARRAY (0 to 15) OF BIT_VECTOR(2 DOWNTO 0);
+    TYPE MEMORY IS ARRAY (0 to addr_size - 1) OF BIT_VECTOR(data_size - 1 DOWNTO 0);
     SIGNAL mem : MEMORY := (others => (others => '0'));
 
     BEGIN
