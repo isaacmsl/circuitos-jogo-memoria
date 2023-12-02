@@ -8,7 +8,7 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
 - [x] Desenvolver diagrama dos componentes
 - [ ] Criar componentes em VHDL
   - [x] Máquina de estados
-  - [ ] Multiplexador
+  - [x] Multiplexador 16x1
   - [x] Contador
   - [ ] Comparador
   - [x] Codificador de teclado
