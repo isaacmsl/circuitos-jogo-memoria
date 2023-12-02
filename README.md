@@ -13,13 +13,16 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
   - [x] Comparador de cartas
   - [x] Codificador de teclado
   - [x] Decodificador de display
-  - [ ] Display de 7 segmentos
   - [ ] Manipulador de displays
   - [ ] Registrador
   - [ ] Jogo
 - [ ] Interconectar componentes no ModelSim
 - [ ] Realizar simulações
 - [ ] Desenvolvimento de relatório apresentando resultados
+
+## Diagrama dos componentes
+
+![image](https://github.com/isaacmsl/circuitos-jogo-memoria/assets/31693006/77ecd94f-0fdc-4c92-93b0-5d197114fa64)
 
 ## Autores
 
