@@ -10,7 +10,7 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
   - [x] Máquina de estados
   - [x] Multiplexador 16x1
   - [x] Contador
-  - [ ] Comparador
+  - [x] Comparador de cartas
   - [x] Codificador de teclado
   - [x] Decodificador de display
   - [ ] Manipulador de displays
