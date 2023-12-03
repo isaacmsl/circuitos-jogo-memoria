@@ -1,6 +1,8 @@
+USE work.our_pkg.ALL;
+
 ENTITY manipulador_display IS
 PORT (
-    cartas_jogo      : IN BIT_VECTOR(15 DOWNTO 0);       
+    cartas_jogo      : IN CARTAS_JOGO;
     cartas_viradas   : IN BIT_VECTOR(15 DOWNTO 0)
 );
 END manipulador_display;
