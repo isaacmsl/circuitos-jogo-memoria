@@ -103,6 +103,6 @@ BEGIN
     states          : maq_estados PORT MAP (clk, clrn, escolheu, cont_cartas, ena_comp);
     comp            : comp_cartas PORT MAP (ena_comp, carta_a, carta_b, comp_res);
     vira            : vira_cartas PORT MAP (ena_comp, comp_res, pos_a, pos_b, viradas);
-    cont            : contador PORT MAP (comp_res, clk, clrn, "000", cont_cartas);
+    cont            : contador PORT MAP (comp_res, clk, clrn, "0000", cont_cartas);
     displays        : manipulador_display PORT MAP (cartas_jogo, viradas);
 END arch;
