@@ -46,12 +46,8 @@ p_next_state : PROCESS (state_reg, viradas, escolheu)
 p_output : PROCESS (state_reg)
     BEGIN
         ena_comp <= '0';
-        ena_cod <= '0';
         IF (state_reg = comparacao) THEN
             ena_comp <= '1';
-            ena_cod <= '0';
-        ELSIF (state_reg = espera) THEN
-            ena_cod <= '1';
         END IF;
     END PROCESS;
 END arch;
