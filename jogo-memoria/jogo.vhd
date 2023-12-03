@@ -1,12 +1,13 @@
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 USE IEEE.std_logic_unsigned.ALL;
+USE work.our_pkg.ALL;
 
 ENTITY jogo IS
     PORT (
         clk  : IN BIT;
         clrn : IN BIT;
-        input : IN NATURAL; -- tecla selecionada
+        input : IN NATURAL -- tecla selecionada
     );
 END jogo;
 
@@ -43,7 +44,7 @@ END COMPONENT;
 
 COMPONENT manipulador_display IS
 PORT (
-    cartas_jogo      : IN BIT_VECTOR(15 DOWNTO 0);       
+    cartas_jogo      : IN CARTAS_JOGO;       
     cartas_viradas   : IN BIT_VECTOR(15 DOWNTO 0)
 );
 END COMPONENT;
@@ -62,6 +63,23 @@ COMPONENT memoria_ram IS
     );
 END COMPONENT;
 
+COMPONENT foo IS
+PORT (
+    pos_a, pos_b     : IN NATURAL;
+    cartas           : CARTAS_JOGO;
+    carta_a, carta_b : OUT BIT_VECTOR(2 DOWNTO 0);
+    escolheu         : OUT BIT
+);
+END COMPONENT;
+
+COMPONENT vira_cartas IS 
+PORT (
+    enable               : IN BIT;
+    comp_res             : IN BIT;
+    pos_a, pos_b         : IN NATURAL;
+    cartas_viradas       : OUT BIT_VECTOR(15 DOWNTO 0)
+);
+END COMPONENT;
 
 SIGNAL carta_jogo : BIT_VECTOR(2 DOWNTO 0);
 SIGNAL carta_virada : BIT_VECTOR(0 DOWNTO 0);
@@ -71,18 +89,20 @@ SIGNAL ena_comp          : BIT;
 SIGNAL escolheu          : BIT;
 SIGNAL int               : INTEGER range 0 to 16;
 SIGNAL carta_a, carta_b  : BIT_VECTOR(2 DOWNTO 0);
-SIGNAL pos_a, pos_b      : BIT_VECTOR(3 DOWNTO 0);
+SIGNAL pos_a, pos_b      : NATURAL;
 SIGNAL cartas, viradas   : BIT_VECTOR(15 DOWNTO 0);
 SIGNAL cont_cartas       : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
+SIGNAL cartas_jogo : CARTAS_JOGO := (
+    "001", "001", "010", "011", "101", "110", "111", "100",
+    "111", "011", "101", "010", "000", "110", "100", "000"
+);
+
 BEGIN
-    // Saber como compartilhar a memória entre vários componentes
-    foo             : foo PORT MAP (input, pos_a, pos_b, escolheu);
-    cartas_jogo     : memoria_ram PORT MAP (input, "000", '0', clk, carta_jogo);
-    cartas_viradas  : memoria_ram GENERIC MAP (16, 1) PORT MAP (0, "0", '0', clk, carta_virada);
+    bar             : foo PORT MAP(pos_a, pos_b, cartas_jogo, carta_a, carta_b, escolheu);
     states          : maq_estados PORT MAP (clk, clrn, escolheu, cont_cartas, ena_comp);
     comp            : comp_cartas PORT MAP (ena_comp, carta_a, carta_b, comp_res);
-    cont            : contador PORT MAP (comp_res, clk, clrn, "000", cont_cartas);
-    displays        : manipulador_display PORT MAP (cartas, viradas);
-
+    vira            : vira_cartas PORT MAP (ena_comp, comp_res, pos_a, pos_b, viradas);
+    cont            : contador PORT MAP (comp_res, clk, clrn, "0000", cont_cartas);
+    displays        : manipulador_display PORT MAP (cartas_jogo, viradas);
 END arch;
