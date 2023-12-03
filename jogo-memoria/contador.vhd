@@ -8,7 +8,6 @@ ENTITY contador IS
         ena     : IN BIT;                               -- enable
         clk     : IN BIT;                               -- clock
         clrn    : IN BIT;                               -- clear
-        d       : IN STD_LOGIC_VECTOR(W-1 DOWNTO 0);    -- data input
         q       : BUFFER STD_LOGIC_VECTOR(W-1 DOWNTO 0) -- data output
     );
 END contador;

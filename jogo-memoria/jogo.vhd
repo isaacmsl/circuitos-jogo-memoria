@@ -1,7 +1,7 @@
 LIBRARY IEEE;
+USE work.our_pkg.ALL;
 USE IEEE.std_logic_1164.ALL;
 USE IEEE.std_logic_unsigned.ALL;
-USE work.our_pkg.ALL;
 
 ENTITY jogo IS
     PORT (
@@ -19,7 +19,7 @@ PORT (
     clrn              : IN BIT;                          -- clear
     escolheu          : IN BIT;                          -- escolheu as duas cartas
     viradas           : IN STD_LOGIC_VECTOR(3 DOWNTO 0); -- cartas viradas
-    ena_comp          : OUT BIT                          -- enables
+    ena_comp, ena_cod : OUT BIT                          -- enables
 );
 END COMPONENT;
 
@@ -37,7 +37,6 @@ COMPONENT contador IS
         ena     : IN BIT;                               -- enable
         clk     : IN BIT;                               -- clock
         clrn    : IN BIT;                               -- clear
-        d       : IN STD_LOGIC_VECTOR(W-1 DOWNTO 0);    -- data input
         q       : BUFFER STD_LOGIC_VECTOR(W-1 DOWNTO 0) -- data output
     );
 END COMPONENT;
@@ -67,8 +66,7 @@ COMPONENT foo IS
 PORT (
     pos_a, pos_b     : IN NATURAL;
     cartas           : CARTAS_JOGO;
-    carta_a, carta_b : OUT BIT_VECTOR(2 DOWNTO 0);
-    escolheu         : OUT BIT
+    carta_a, carta_b : OUT BIT_VECTOR(2 DOWNTO 0)
 );
 END COMPONENT;
 
@@ -81,17 +79,27 @@ PORT (
 );
 END COMPONENT;
 
+COMPONENT cod_card IS
+PORT(   enable			: IN BIT;						-- enable
+		position   		: IN NATURAL;        			-- natural input
+		escolheu		: OUT BIT;						-- duas cartas escolhidas
+		pos_a, pos_b   	: OUT NATURAL;  				-- data output
+		num_card   		: BUFFER BIT 					-- buffer
+);
+END COMPONENT;
+
 SIGNAL carta_jogo : BIT_VECTOR(2 DOWNTO 0);
 SIGNAL carta_virada : BIT_VECTOR(0 DOWNTO 0);
 
 SIGNAL comp_res          : BIT;
-SIGNAL ena_comp          : BIT;
+SIGNAL ena_comp, ena_cod : BIT;
 SIGNAL escolheu          : BIT;
 SIGNAL int               : INTEGER range 0 to 16;
 SIGNAL carta_a, carta_b  : BIT_VECTOR(2 DOWNTO 0);
 SIGNAL pos_a, pos_b      : NATURAL;
 SIGNAL cartas, viradas   : BIT_VECTOR(15 DOWNTO 0);
 SIGNAL cont_cartas       : STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL buf               : BIT;
 
 SIGNAL cartas_jogo : CARTAS_JOGO := (
     "001", "001", "010", "011", "101", "110", "111", "100",
@@ -99,10 +107,11 @@ SIGNAL cartas_jogo : CARTAS_JOGO := (
 );
 
 BEGIN
-    bar             : foo PORT MAP(pos_a, pos_b, cartas_jogo, carta_a, carta_b, escolheu);
-    states          : maq_estados PORT MAP (clk, clrn, escolheu, cont_cartas, ena_comp);
+    bar             : foo PORT MAP (pos_a, pos_b, cartas_jogo, carta_a, carta_b);
+    states          : maq_estados PORT MAP (clk, clrn, escolheu, cont_cartas, ena_comp, ena_cod);
     comp            : comp_cartas PORT MAP (ena_comp, carta_a, carta_b, comp_res);
     vira            : vira_cartas PORT MAP (ena_comp, comp_res, pos_a, pos_b, viradas);
-    cont            : contador PORT MAP (comp_res, clk, clrn, "0000", cont_cartas);
+    cont            : contador PORT MAP (comp_res, clk, clrn, cont_cartas);
     displays        : manipulador_display PORT MAP (cartas_jogo, viradas);
+    cod             : cod_card PORT MAP (ena_cod, input, escolheu, pos_a, pos_b, buf);
 END arch;
