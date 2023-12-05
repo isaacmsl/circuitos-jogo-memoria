@@ -84,22 +84,19 @@ PORT(   enable			: IN BIT;						-- enable
 		position   		: IN NATURAL;        			-- natural input
 		escolheu		: OUT BIT;						-- duas cartas escolhidas
 		pos_a, pos_b   	: OUT NATURAL;  				-- data output
-		num_card   		: BUFFER BIT 					-- buffer
+		num_card   		: BUFFER BIT; 					-- buffer
+        last_pos 		: BUFFER NATURAL				-- ultima posição
 );
 END COMPONENT;
 
-SIGNAL carta_jogo : BIT_VECTOR(2 DOWNTO 0);
-SIGNAL carta_virada : BIT_VECTOR(0 DOWNTO 0);
-
-SIGNAL comp_res          : BIT;
-SIGNAL ena_comp, ena_cod : BIT;
-SIGNAL escolheu          : BIT;
-SIGNAL int               : INTEGER range 0 to 16;
-SIGNAL carta_a, carta_b  : BIT_VECTOR(2 DOWNTO 0);
-SIGNAL pos_a, pos_b      : NATURAL;
-SIGNAL cartas, viradas   : BIT_VECTOR(15 DOWNTO 0);
-SIGNAL cont_cartas       : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL buf               : BIT;
+SIGNAL comp_res                 : BIT;
+SIGNAL ena_comp, ena_cod        : BIT;
+SIGNAL escolheu                 : BIT;
+SIGNAL carta_a, carta_b         : BIT_VECTOR(2 DOWNTO 0);
+SIGNAL pos_a, pos_b, last_pos   : NATURAL;
+SIGNAL viradas                  : BIT_VECTOR(15 DOWNTO 0);
+SIGNAL cont_cartas              : STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL buf                      : BIT;
 
 SIGNAL cartas_jogo : CARTAS_JOGO := (
     "001", "001", "010", "011", "101", "110", "111", "100",
@@ -113,5 +110,5 @@ BEGIN
     vira            : vira_cartas PORT MAP (ena_comp, comp_res, pos_a, pos_b, viradas);
     cont            : contador PORT MAP (comp_res, clk, clrn, cont_cartas);
     displays        : manipulador_display PORT MAP (cartas_jogo, viradas);
-    cod             : cod_card PORT MAP (ena_cod, input, escolheu, pos_a, pos_b, buf);
+    cod             : cod_card PORT MAP (ena_cod, input, escolheu, pos_a, pos_b, buf, last_pos);
 END arch;
