@@ -73,6 +73,8 @@ END COMPONENT;
 
 COMPONENT vira_cartas IS 
 PORT (
+    clrn                 : IN BIT;
+    clk                  : IN BIT;
     comp_res             : IN BIT;
     pos_a, pos_b         : IN NATURAL;
     pos                  : IN BIT_VECTOR(1 DOWNTO 0);
@@ -112,7 +114,7 @@ BEGIN
     bar             : foo PORT MAP (pos_a, pos_b, cartas_jogo, carta_a, carta_b);
     states          : maq_estados PORT MAP (clk, clrn, escolheu, cont_cartas, ena_comp, ena_cod);
     comp            : comp_cartas PORT MAP (ena_comp, carta_a, carta_b, comp_res);
-    vira            : vira_cartas PORT MAP ( comp_res, pos_a, pos_b, pos, viradas);
+    vira            : vira_cartas PORT MAP (clrn, clk, comp_res, pos_a, pos_b, pos, viradas);
     cont            : contador PORT MAP (comp_res, clk, clrn, cont_cartas);
     displays        : manipulador_display PORT MAP (cartas_jogo, viradas, cartas_display);
     cod             : cod_card PORT MAP (ena_cod, input, viradas, escolheu, pos_a, pos_b, pos, buf, last_pos);
