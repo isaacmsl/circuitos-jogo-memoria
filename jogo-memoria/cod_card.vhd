@@ -1,6 +1,7 @@
 ENTITY cod_card IS
 PORT(	enable			: IN BIT;						-- enable
 		position   		: IN NATURAL;        			-- natural input
+		viradas			: IN BIT_VECTOR(15 DOWNTO 0);	-- cartas viradas
 		escolheu		: OUT BIT;						-- duas cartas escolhidas
 		pos_a, pos_b   	: OUT NATURAL;  				-- data output
 		num_card   		: BUFFER BIT; 					-- buffer
@@ -12,7 +13,7 @@ ARCHITECTURE behavior OF cod_card IS
 BEGIN
 	PROCESS(position, enable)
 		BEGIN
-		IF ((enable = '1') AND NOT (position-1 = last_pos) AND NOT (position = 0)) THEN
+		IF ((enable = '1') AND NOT (position-1 = last_pos) AND NOT (position = 0) AND (viradas(position-1) = '0')) THEN
 			IF(num_card = '0') THEN
 				num_card <= '1';
 				pos_a <= position-1;

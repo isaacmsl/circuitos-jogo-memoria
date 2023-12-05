@@ -82,6 +82,7 @@ END COMPONENT;
 COMPONENT cod_card IS
 PORT(   enable			: IN BIT;						-- enable
 		position   		: IN NATURAL;        			-- natural input
+        viradas			: IN BIT_VECTOR(15 DOWNTO 0);	-- cartas viradas
 		escolheu		: OUT BIT;						-- duas cartas escolhidas
 		pos_a, pos_b   	: OUT NATURAL;  				-- data output
 		num_card   		: BUFFER BIT; 					-- buffer
@@ -110,5 +111,5 @@ BEGIN
     vira            : vira_cartas PORT MAP (ena_comp, comp_res, pos_a, pos_b, viradas);
     cont            : contador PORT MAP (comp_res, clk, clrn, cont_cartas);
     displays        : manipulador_display PORT MAP (cartas_jogo, viradas);
-    cod             : cod_card PORT MAP (ena_cod, input, escolheu, pos_a, pos_b, buf, last_pos);
+    cod             : cod_card PORT MAP (ena_cod, input, viradas, escolheu, pos_a, pos_b, buf, last_pos);
 END arch;
