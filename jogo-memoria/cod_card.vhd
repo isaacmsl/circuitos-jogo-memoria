@@ -12,7 +12,7 @@ ARCHITECTURE behavior OF cod_card IS
 BEGIN
 	PROCESS(position, enable)
 		BEGIN
-		IF ((enable = '1') AND NOT (position = last_pos) AND NOT (position = 0)) THEN
+		IF ((enable = '1') AND NOT (position-1 = last_pos) AND NOT (position = 0)) THEN
 			IF(num_card = '0') THEN
 				num_card <= '1';
 				pos_a <= position-1;
