@@ -11,7 +11,7 @@ END vira_cartas;
 
 ARCHITECTURE arch OF vira_cartas IS
 BEGIN
-    PROCESS (enable)
+    PROCESS (enable, comp_res)
     BEGIN
         IF (enable = '1') THEN
             cartas_viradas(pos_a) <= comp_res;
