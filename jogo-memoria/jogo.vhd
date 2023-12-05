@@ -43,8 +43,9 @@ END COMPONENT;
 
 COMPONENT manipulador_display IS
 PORT (
-    cartas_jogo      : IN CARTAS_JOGO;       
-    cartas_viradas   : IN BIT_VECTOR(15 DOWNTO 0)
+    cartas_jogo_in   : IN CARTAS_JOGO;
+    cartas_viradas   : IN BIT_VECTOR(15 DOWNTO 0);
+    cartas_visual    : OUT CARTAS_DISPLAY
 );
 END COMPONENT;
 
@@ -103,6 +104,7 @@ SIGNAL cartas_jogo : CARTAS_JOGO := (
     "001", "001", "010", "011", "101", "110", "111", "100",
     "111", "011", "101", "010", "000", "110", "100", "000"
 );
+SIGNAL cartas_display : CARTAS_DISPLAY;
 
 BEGIN
     bar             : foo PORT MAP (pos_a, pos_b, cartas_jogo, carta_a, carta_b);
@@ -110,6 +112,6 @@ BEGIN
     comp            : comp_cartas PORT MAP (ena_comp, carta_a, carta_b, comp_res);
     vira            : vira_cartas PORT MAP (ena_comp, comp_res, pos_a, pos_b, viradas);
     cont            : contador PORT MAP (comp_res, clk, clrn, cont_cartas);
-    displays        : manipulador_display PORT MAP (cartas_jogo, viradas);
+    displays        : manipulador_display PORT MAP (cartas_jogo, viradas, cartas_display);
     cod             : cod_card PORT MAP (ena_cod, input, viradas, escolheu, pos_a, pos_b, buf, last_pos);
 END arch;
