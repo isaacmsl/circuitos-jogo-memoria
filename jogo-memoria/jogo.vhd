@@ -73,9 +73,9 @@ END COMPONENT;
 
 COMPONENT vira_cartas IS 
 PORT (
-    enable               : IN BIT;
     comp_res             : IN BIT;
     pos_a, pos_b         : IN NATURAL;
+    pos                  : IN BIT_VECTOR(1 DOWNTO 0);
     cartas_viradas       : OUT BIT_VECTOR(15 DOWNTO 0)
 );
 END COMPONENT;
@@ -83,22 +83,24 @@ END COMPONENT;
 COMPONENT cod_card IS
 PORT(   enable			: IN BIT;						-- enable
 		position   		: IN NATURAL;        			-- natural input
-        viradas			: IN BIT_VECTOR(15 DOWNTO 0);	-- cartas viradas
+		viradas			: IN BIT_VECTOR(15 DOWNTO 0);	-- cartas viradas
 		escolheu		: OUT BIT;						-- duas cartas escolhidas
 		pos_a, pos_b   	: OUT NATURAL;  				-- data output
+		pos 			: OUT BIT_VECTOR(1 DOWNTO 0);	-- virar carta
 		num_card   		: BUFFER BIT; 					-- buffer
-        last_pos 		: BUFFER NATURAL				-- ultima posição
+		last_pos 		: BUFFER NATURAL				-- ultima posição
 );
 END COMPONENT;
 
+SIGNAL buf                      : BIT;
 SIGNAL comp_res                 : BIT;
-SIGNAL ena_comp, ena_cod        : BIT;
 SIGNAL escolheu                 : BIT;
-SIGNAL carta_a, carta_b         : BIT_VECTOR(2 DOWNTO 0);
+SIGNAL ena_comp, ena_cod        : BIT;
 SIGNAL pos_a, pos_b, last_pos   : NATURAL;
+SIGNAL pos                      : BIT_VECTOR(1 DOWNTO 0);
+SIGNAL carta_a, carta_b         : BIT_VECTOR(2 DOWNTO 0);
 SIGNAL viradas                  : BIT_VECTOR(15 DOWNTO 0);
 SIGNAL cont_cartas              : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL buf                      : BIT;
 
 SIGNAL cartas_jogo : CARTAS_JOGO := (
     "001", "001", "010", "011", "101", "110", "111", "100",
@@ -110,8 +112,8 @@ BEGIN
     bar             : foo PORT MAP (pos_a, pos_b, cartas_jogo, carta_a, carta_b);
     states          : maq_estados PORT MAP (clk, clrn, escolheu, cont_cartas, ena_comp, ena_cod);
     comp            : comp_cartas PORT MAP (ena_comp, carta_a, carta_b, comp_res);
-    vira            : vira_cartas PORT MAP (ena_comp, comp_res, pos_a, pos_b, viradas);
+    vira            : vira_cartas PORT MAP ( comp_res, pos_a, pos_b, pos, viradas);
     cont            : contador PORT MAP (comp_res, clk, clrn, cont_cartas);
     displays        : manipulador_display PORT MAP (cartas_jogo, viradas, cartas_display);
-    cod             : cod_card PORT MAP (ena_cod, input, viradas, escolheu, pos_a, pos_b, buf, last_pos);
+    cod             : cod_card PORT MAP (ena_cod, input, viradas, escolheu, pos_a, pos_b, pos, buf, last_pos);
 END arch;
