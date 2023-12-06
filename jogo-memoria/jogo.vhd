@@ -49,20 +49,6 @@ PORT (
 );
 END COMPONENT;
 
-COMPONENT memoria_ram IS
-    GENERIC (
-        addr_size    : INTEGER := 16;
-        data_size    : INTEGER := 3
-    );
-    PORT (
-        addr        : IN NATURAL RANGE 0 TO addr_size - 1;   -- access to 16 cards
-        data_in     : IN BIT_VECTOR(data_size - 1 DOWNTO 0); -- card
-        enable_wr   : IN BIT;
-        clk         : IN BIT;
-        data_out    : OUT BIT_VECTOR(data_size - 1 DOWNTO 0)
-    );
-END COMPONENT;
-
 COMPONENT foo IS
 PORT (
     pos_a, pos_b     : IN NATURAL;
