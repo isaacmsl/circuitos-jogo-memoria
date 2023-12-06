@@ -6,23 +6,25 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
 
 - [x] Criar [pseudoalgoritmo](algoritmo.md)
 - [x] Desenvolver diagrama dos componentes
-- [ ] Criar componentes em VHDL
+- [x] Criar componentes em VHDL
   - [x] Máquina de estados
-  - [x] Multiplexador 16x1
   - [x] Contador
   - [x] Comparador de cartas
   - [x] Codificador de teclado
   - [x] Decodificador de display
   - [x] Manipulador de displays
-  - [ ] Registrador
-  - [ ] Jogo 
-- [ ] Interconectar componentes no ModelSim (Em andamento)
-- [ ] Realizar simulações
-- [ ] Desenvolvimento de relatório apresentando resultados (Em andamento)
+  - [x] Virador de cartas
+  - [x] Escolhedor de cartas
+  - [x] Jogo 
+- [x] Interconectar componentes no ModelSim 
+- [x] Realizar simulações
+- [x] Desenvolvimento de [relatório](Artigo.pdf) apresentando resultados
+- [x] Elaborar [apresentação](Apresentação.pdf) do projeto
 
 ## Diagrama dos componentes
 
 ![image](https://github.com/isaacmsl/circuitos-jogo-memoria/assets/31693006/77ecd94f-0fdc-4c92-93b0-5d197114fa64)
+
 
 ## Autores
 
