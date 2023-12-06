@@ -23,8 +23,7 @@ Projeto de hardware dedicado para simular um jogo de memória na disciplina de C
 
 ## Diagrama dos componentes
 
-![image](https://github.com/isaacmsl/circuitos-jogo-memoria/assets/31693006/77ecd94f-0fdc-4c92-93b0-5d197114fa64)
-
+![diagrama_bloco](https://github.com/isaacmsl/circuitos-jogo-memoria/assets/31693006/990860dc-fc16-4655-a77b-0960250946a5)
 
 ## Autores
 
